@@ -9,4 +9,5 @@ RUN go get -u -v github.com/uudashr/gopkgs/v2/cmd/gopkgs@latest \
     && GOBIN=/tmp/ go install github.com/go-delve/delve/cmd/dlv@master \
     && mv /tmp/dlv $GOPATH/bin/dlv-dap \
     && go get -u -v honnef.co/go/tools/cmd/staticcheck@latest \ 
-    && go get -u -v golang.org/x/tools/gopls@latest
+    && go get -u -v golang.org/x/tools/gopls@latest \
+    && GO111MODULE=on go install golang.org/x/tools/gopls@latest
