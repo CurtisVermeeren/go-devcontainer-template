@@ -15,3 +15,6 @@ RUN go install github.com/uudashr/gopkgs/v2/cmd/gopkgs@latest \
     && go install golang.org/x/tools/gopls@latest \
     && GO111MODULE=on go install golang.org/x/tools/gopls@latest
     
+# Uses "robbyrussell" theme (original Oh My Zsh theme), with no plugins
+RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v1.1.2/zsh-in-docker.sh)" -- \
+    -t robbyrussell
