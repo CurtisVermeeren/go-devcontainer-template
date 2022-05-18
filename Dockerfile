@@ -1,4 +1,4 @@
-FROM golang:1.17.8
+FROM golang:1.18.1
 WORKDIR /app
 EXPOSE 8080
 
