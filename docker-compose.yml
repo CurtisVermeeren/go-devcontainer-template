@@ -1,0 +1,35 @@
+version: '3.8'
+services:
+  go-app:
+    container_name: go-devcontainer-template
+    build: .
+    env_file: .env
+    volumes:
+      - ./:/app:cached
+    ports:
+      - 3000:3000
+    command: /bin/sh -c "while sleep 1000; do :; done"
+    networks:
+      - internal
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+      MYSQL_ROOT_HOST: "%"
+      MYSQL_DATABASE: '${DB_NAME}'
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+    ports:
+      - '3306:3306'
+    networks:
+      - internal
+    volumes:
+      - ./schema/:/docker-entrypoint-initdb.d/
+      - database-data:/var/lib/mysql
+
+volumes:
+  database-data:
+
+
+networks:
+  internal:
+    driver: bridge
